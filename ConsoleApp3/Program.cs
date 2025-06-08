@@ -4,39 +4,83 @@ class Program
 {
     static void Main(string[] args)
     {
-        int num1; 
-        Console.WriteLine("Введите размер масива:"); 
-        num1 = Convert.ToInt32(Console.ReadLine());
-        int[] array = new int[num1];
-        Random rnd = new Random();
-        for (int i = 0; i < num1; i++)
+        Console.WriteLine("Введите штрину матрицы");
+        int a = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Введите длинну матрицы");
+        int b = Convert.ToInt32(Console.ReadLine());
+        int[,] matrix = new int[a, b];
+        Random rand = new Random();
+
+        for (int i = 0; i < a; i++)
         {
-            array[i] = rnd.Next(1, 101);
-            
-        }
-        PrintArray(array); 
-        for (int i = 0; i < num1-1; i++)
-        {
-            for (int j = 0; j < num1 - i-1; j++)
+            for (int j = 0; j < b; j++)
             {
-                if (array[j] > array[j + 1])
-                {
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
+                matrix[i, j] = rand.Next(1, 10);
             }
-               
         }
-       PrintArray(array);
+        PrintMatrix(matrix, a, b);
+        PrintMax(matrix, a, b);
+        PrintSumDig(matrix, a, b);
+        Transpose(matrix, a, b);
     }
 
-    static void PrintArray(int[] array)
+    static void PrintMatrix(int[,] matrix, int a, int b)
     {
-        foreach (var item in array)
+        for (int i = 0; i < a; i++)
         {
-            Console.Write(item + " ");
+            for (int j = 0; j < b; j++)
+            {
+                Console.Write(matrix[i, j] + " ");
+            }
+            Console.WriteLine();
         }
         Console.WriteLine();
+    }
+
+    static void PrintMax(int[,] matrix, int a, int b)
+    {
+        int max = 0;
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                if (matrix[i, j] > max)
+                {
+                    max = matrix[i, j];
+                }
+            }
+        }
+        Console.WriteLine(max);
+    }
+
+    static void PrintSumDig(int[,] matrix, int a, int b)
+    {
+        int sum = 0;
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < b; j++)
+            {
+                if (i==j)
+                {
+                    sum += matrix[i, j];
+                }
+            }
+        }
+        Console.WriteLine(sum);
+    }
+
+    static void Transpose(int[,] matrix, int a, int b)
+    {
+        int temp = 0;
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = i+1; j < b; j++)
+            {
+                temp = matrix[i, j];
+                matrix[i, j] = matrix[j, i];
+                matrix[j, i] = temp;
+            }
+        }
+        PrintMatrix(matrix, a, b);
     }
 }
