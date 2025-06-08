@@ -12,9 +12,9 @@ class Program
         for (int i = 0; i < num1; i++)
         {
             array[i] = rnd.Next(1, 101);
-            Console.Write(array[i]+" ");
+            
         }
-
+        PrintArray(array); 
         for (int i = 0; i < num1-1; i++)
         {
             for (int j = 0; j < num1 - i-1; j++)
@@ -28,10 +28,15 @@ class Program
             }
                
         }
-        Console.WriteLine();
-        for (int i = 0; i < num1; i++)
+       PrintArray(array);
+    }
+
+    static void PrintArray(int[] array)
+    {
+        foreach (var item in array)
         {
-            Console.Write(array[i] + " ");
+            Console.Write(item + " ");
         }
+        Console.WriteLine();
     }
 }
