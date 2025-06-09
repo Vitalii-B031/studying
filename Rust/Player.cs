@@ -11,7 +11,11 @@ public class Player
         target.Health-=Weapon.Damage;
         Console.WriteLine($"{Name} нанес {Weapon.Damage} урона по игроку {target.Name} оружием {Weapon.Name}");
     }
-    
+
+    public void Print()
+    {
+        Console.WriteLine("Hello World!");
+    }
 
     public Player(string name, Weapon weapon)
     {
