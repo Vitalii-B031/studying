@@ -5,13 +5,18 @@ class Program
     static void Main(string[] args)
     {
 
-        var p = GetPlayer(GetWeapon(WeaponType.Revolver));
+        var p = GetPlayer(GetWeapon(WeaponType.Bow));
         var p2 = GetPlayer(GetWeapon(WeaponType.Revolver));
         Console.WriteLine($"{p.Name} в игре");
         Console.WriteLine($"{p2.Name} в игре");
-        p.Hit(p2);
-        Console.WriteLine($"{p2.Name} {p2.Health}");
-        p.Print();
+        while (!p.IsDead && !p2.IsDead)
+        {
+            p.Hit(p2);
+            p2.Hit(p);
+            Console.WriteLine($"{p.Health} {p2.Health}");
+            
+        }
+       
     }
 
     static Player GetPlayer(Weapon weapon)
