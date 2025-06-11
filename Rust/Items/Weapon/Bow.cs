@@ -2,7 +2,7 @@ namespace Rust;
 
 public class Bow : Weapon
 {
-    public Bow() : base("Bow", 33)
+    public Bow(int count) : base("Bow", 33,count,100)
     {
         
     }
